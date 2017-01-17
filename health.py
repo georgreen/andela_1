@@ -67,11 +67,14 @@ class Patient(object):
     def take_meds(self, injection = 0, tablets = 0):
         if(injection == 0 and tablets == 0):
             self.num_of_viruses += 4
+            print("getting Worse")
         else:
             if self.num_of_viruses > 4:
                 self.num_of_viruses = self.num_of_viruses - 4
             else:
                 print("You fine cured!")
+            print("getting better")
+
 
     def get_infected(self, list_viruse):
         for viruse in list_viruse:
@@ -82,15 +85,18 @@ class Doctor(object):
     """
     models a doctor
     """
-    Known_Viruse = {'Homa' : 'cold_Viruse', 'ring0' : 'Flu_Viruses', 'supperBug' : 'Flu_Viruses'}
+    known_Viruse = {'Homa' : 'cold_Viruse', 'ring0' : 'Flu_Viruses', 'supperBug' : 'Flu_Viruses'}
     def __init__(self,skill_Level = 4):
         self.skill_Level = skill_Level
 
     def get_cure(self, list_Viruses):
         results = []
         for viruse in list_Viruses:
-            results.append(Known_Viruse.get(Viruse))
-        return results
+            results.append(Doctor.known_Viruse.get(Viruse))
+        if len(results) > 2:
+            return [ 4, 60]
+        else:
+            return [1, 5]
 
 def Treament_process():
     careless_human = Patient(19, "Lovi", True)
@@ -108,8 +114,12 @@ def Treament_process():
     #goes to hos[ital doctor can't identify exact viruses, but all viruses are viruses!
     meds = striking_doctors.get_cure(careless_human.get_Viruses_hosted())
 
-    #given some general medicine
-
     #hope he gets better
+    for i in range(meds[1]):
+        #given some general medicine
+        careless_human.take_meds(meds[0], meds[1])
+        if(careless_human.num_of_viruses <= 4):
+            print("cured")
 
-    #Exit
+if __name__ == '__main__':
+    Treament_process()
