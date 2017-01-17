@@ -68,7 +68,12 @@ class Patient(object):
         if(injection == 0 and tablets == 0):
             self.num_of_viruses += 4
 
-class Docter(object):
+    def get_infected(self, list_viruse):
+        for viruse in list_viruse:
+            self.infections.append(viruse)
+
+
+class Doctor(object):
     """
     models a doctor
     """
@@ -83,10 +88,17 @@ class Docter(object):
         return results
 
 def Treament_process():
-    pass
+    careless_human = Patient(19, "Lovi", True)
+    striking_doctors = Doctor(10)
+
     #infect patient with all Viruses
+    careless_human.get_infected(['Homa', 'ring0', 'supperBug', 'Hiv'])
+    careless_human.num_of_viruses = 4
+
 
     #doesn't take medicine for some time population increase
+    for i in range(0, 30):
+        careless_human.take_meds()
 
     #goes to hos[ital doctor can't identify exact viruses, but all viruses are viruses!
 
