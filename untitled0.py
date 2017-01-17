@@ -1,18 +1,4 @@
-#!/usr/bin/env python3
-# -*- coding: utf-8 -*-
-"""
-Created on Tue Jan 17 17:06:15 2017
-
-@author: manu
-"""
-
-# -*- coding: utf-8 -*-
-"""
-Spyder Editor
-
-This is a temporary script file.
-"""
-class Car(): 
+class Car(object): 
   def __init__(self, name = 'General', model = 'GM',Type = ''):
     self.name = name
     self.model = model 
@@ -36,14 +22,11 @@ class Car():
       
       
   def drive(self,speed):
-    car = Car(self.name, self.model, self.Type)
-    if speed == 7:
-      car.speed = 77
+    if speed == 7 and self.Type == 'trailer':
       self.speed = 77
-    elif speed == 3:
-      car.speed = 1000
-      self.speed = 100
-    return car
+    elif speed == 3 and self.name == 'Mercedes':
+      self.speed = 1000
+    return self
     
   def set_speed(self, n):
     self.speed = n
@@ -54,3 +37,4 @@ class Car():
       return False
     return True
   
+
